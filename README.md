@@ -24,7 +24,7 @@ Here are the justifications for the technologies used:
 
 ### ETL Flow
 * Data is copied to s3 buckets.
-* Once the data is moved to S3 bucket, spark job is triggered which reads the data from working zone and apply transformation. Dataset is then to the Processed Zone. Used spark to trim,filter,convert datatypes after loading the data from files into the dataframes. File type includes parquet and csv files. 
+* Once the data is moved to S3 bucket, spark job is triggered which reads the data from working zone and apply transformation. Dataset is then to the Processed Zone. Used spark to trim,filter,convert datatypes after loading the data from files into the dataframes. File type includes parquet and csv files.
 * Airflow ETL job picks up data from processed zone and stages it into the Redshift staging tables.
 * Using the Redshift staging tables and INSERT operation is performed on the Data Warehouse tables to update the dataset.
 * ETL job execution is completed once the Data Warehouse is updated.
@@ -43,7 +43,7 @@ Airflow
 ### Data model
 The database is designed following a star-schema principal with 1 fact table and 6 dimensions tables.
 
-
+<img src="img/DataModel.PNG" height="400" alt="DataModel"/>
 
 * final_immigration: contains immigration information such as arrival date, departure date, visa type, gender, country of origin, etc.
 * D_TIME: contains dimensions for date column
