@@ -74,13 +74,29 @@ Make it available to 100+ people
 Redshift is auto-scaling so if 100+ people need to access, it can handle that easily. If more people or services need access to the database, we can add steps to write to a NoSQL database like Data Store or Cassandra, or write to a SQL one that supports horizontal scaling.
 
 ### Project Instructions
-created a bucket on your project and upload the data with the following structure:
+><s3bucket>/Immigration_files/addrstate
+><s3bucket>/immigration_files/addrstate
+><s3bucket>/Immigration_files/airport
+><s3bucket>/Immigration_files/demo
+><s3bucket>/Immigration_files/port
+><s3bucket>/Immigration_files/rescitycntry
+><s3bucket>/Immigration_files/sasdata
+
+After executing the spark scripts to perform the transformations, data is moved to processed folder in S3
+
+><s3bucket>/Immigration_processed_files/addrstate
+><s3bucket>/Immigration_processed_files/addrstate
+><s3bucket>/Immigration_processed_files/airport
+><s3bucket>/Immigration_processed_files/demo
+><s3bucket>/Immigration_processed_files/port
+><s3bucket>/Immigration_processed_files/rescitycntry
+><s3bucket>/Immigration_processed_files/sasdata
 
 
 Execute Airflow locally
 If everything is setup you will see the following screen
 
-<img src="img/immigration_dag.PNG" height="400" alt="ImmigrationDAG"/>
+<img src="img/immigration_dag.PNG" height="200" alt="ImmigrationDAG"/>
 
 Create connection to Redshift and AWS on airflow
 <img src="img/redshift_connection.PNG" height="400" alt="RedshiftConnection"/>
