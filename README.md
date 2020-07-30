@@ -31,6 +31,16 @@ Here are the justifications for the technologies used:
 * Airflow DAG runs the data quality check on all Warehouse tables once the ETL job execution is completed.
 * Airflow DAG has Analytics queries configured in a Custom Designed Operator. These queries are run and again a Data Quality Check is done on some selected Analytics Table.
 * Dag execution completes after these Data Quality check.
+* In the final Redshift tables queries can be executed to answer following questions
+<p>
+* Most tourists are from which country
+* Most visited state in US
+* How long do they stay in US
+* Travellers avg age graph
+* Tourism by months
+* States and their average temperature
+* Less diversed states
+</p>
 
 ### Environment Setup
 Hardware Used
@@ -62,6 +72,19 @@ A DummyOperator start_pipeline kick off the pipeline followed by 3 load operatio
 
 Next the pipeline loads 3 master data object from the I94 Data dictionary. Then the final_immigration table is created and check to make sure that there is no duplicates. Other dimension tables are also created and the pipelines finishes.
 
+### Data Quality Checks
+Data Quality Check is performed at two stages,
+
+In airflow data quality check operator is implemented to assert statements are added to validate if the dataframe has rows or not.
+
+Some of the checks for all staging tables and final fact table.
+
+
+
+### Data dictionary
+Simple and straight forward table design is chosen which will help in building simple to complex queries for analytics. Some of the data fields name have been renamed to make it meaningful and easy to understand.
+
+[Data Dictionary](/DataDictionary/DataDictionary.xlsx)
 
 ### Scenarios
 Data increase by 100x
