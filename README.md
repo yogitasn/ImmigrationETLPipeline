@@ -71,7 +71,7 @@ Pipelines would be run on 7am daily. how to update dashboard? would it still wor
 Schedule dag to be run daily at 7 AM. Setup dag retry, email/slack notification on failures.
 
 Make it available to 100+ people
-Redshift is auto-scaling so if 100+ people need to access, it can handle that easily. If more people or services need access to the database, we can add steps to write to a NoSQL database like Data Store or Cassandra, or write to a SQL one that supports horizontal scaling.
+Redshift is auto-scaling so if 100+ people need to access, it can handle that easily. I
 
 ### Project Instructions
 ><s3bucket>/Immigration_files/addrstate
