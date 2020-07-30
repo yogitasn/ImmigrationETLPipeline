@@ -35,10 +35,9 @@ Here are the justifications for the technologies used:
    2. Most visited state in US
    3. How long do they stay in US
    4. Travellers average age graph
-   5. Tourism by months
-   6. Less diversed states
-   7. Demographics of the cities people moving to
-   
+   5. Less diversed states
+   6. Demographics of the cities people moving to
+
 
 ### Environment Setup
 Hardware Used
@@ -75,7 +74,7 @@ Data Quality Check is performed at two stages,
 
 In airflow data quality check operator is implemented and assert statements are added to validate if the dataframe has rows or not.
 
-Some of the checks for all staging tables and final fact table.
+Some of the checks for all staging tables like staging_immigration, staging_airport etc and final fact table i.e. final_immigration
 
 
 ### Data dictionary
