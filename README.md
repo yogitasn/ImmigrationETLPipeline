@@ -35,8 +35,9 @@ Here are the justifications for the technologies used:
    2. Most visited state in US
    3. How long do they stay in US
    4. Travellers average age graph
-   5. Less diversed states
-   6. Demographics of the cities people moving to
+   5. Travellers gender graph
+   6. Less diversed states
+   7. Demographics of the cities people moving to
 
 
 ### Environment Setup
@@ -70,7 +71,7 @@ A DummyOperator start_pipeline kick off the pipeline followed by 3 load operatio
 Next the pipeline loads 3 master data object from the I94 Data dictionary. Then the final_immigration table is created and check to make sure that there is no duplicates. Other dimension tables are also created and the pipelines finishes.
 
 ### Data Quality Checks
-Data Quality Check is performed at two stages,
+Data Quality Check is performed in the airflow workflow
 
 In airflow data quality check operator is implemented and assert statements are added to validate if the dataframe has rows or not.
 
