@@ -41,11 +41,11 @@ Airflow
 > Using local airflow workspace
 
 ### Data model
-The database is designed following a star-schema principal with 1 fact table and 5 dimensions tables.
+The database is designed following a star-schema principal with 1 fact table and 6 dimensions tables.
 
 
 
-* F_IMMIGRATION_DATA: contains immigration information such as arrival date, departure date, visa type, gender, country of origin, etc.
+* final_immigration: contains immigration information such as arrival date, departure date, visa type, gender, country of origin, etc.
 * D_TIME: contains dimensions for date column
 * D_PORT: contains port_id and port_name
 * D_AIRPORT: contains airports within a state
@@ -58,9 +58,10 @@ This project uses Airflow for orchestration.
 
 <img src="img/etl_graphview.PNG" height="400" alt="ETL_GRAPHVIEW"/>
 
-A DummyOperator start_pipeline kick off the pipeline followed by 4 load operations. Those operations load data from GCS bucket to BigQuery tables. The immigration_data is loaded as parquet files while the others are csv formatted. There are operations to check rows after loading to BigQuery.
+A DummyOperator start_pipeline kick off the pipeline followed by 4 load operations. Those operations load data from S3 bucket to Redshift tables. The immigration_data is loaded as parquet files while the others are csv formatted. There are operations to check rows after loading to BigQuery.
 
-Next the pipeline loads 3 master data object from the I94 Data dictionary. Then the F_IMMIGRATION_DATA table is created and check to make sure that there is no duplicates. Other dimension tables are also created and the pipelines finishes.
+Next the pipeline loads 3 master data object from the I94 Data dictionary. Then the final_immigration table is created and check to make sure that there is no duplicates. Other dimension tables are also created and the pipelines finishes.
+
 
 ### Scenarios
 Data increase by 100x
@@ -70,4 +71,24 @@ Pipelines would be run on 7am daily. how to update dashboard? would it still wor
 Schedule dag to be run daily at 7 AM. Setup dag retry, email/slack notification on failures.
 
 Make it available to 100+ people
-BigQuery is auto-scaling so if 100+ people need to access, it can handle that easily. If more people or services need access to the database, we can add steps to write to a NoSQL database like Data Store or Cassandra, or write to a SQL one that supports horizontal scaling like BigTable.
+Redshift is auto-scaling so if 100+ people need to access, it can handle that easily. If more people or services need access to the database, we can add steps to write to a NoSQL database like Data Store or Cassandra, or write to a SQL one that supports horizontal scaling.
+
+### Project Instructions
+created a bucket on your project and upload the data with the following structure:
+
+
+Execute Airflow locally
+If everything is setup you will see the following screen
+
+<img src="img/immigration_dag.PNG" height="400" alt="ImmigrationDAG"/>
+
+Create connection to Redshift and AWS on airflow
+<img src="img/redshift_connection.PNG" height="400" alt="RedshiftConnection"/>
+
+<img src="img/AWS_Credentials.PNG" height="400" alt="AWSCredentials"/>
+
+Trigger the dag. Below is the view of successful dag run
+<img src="img/successful_dag_run.PNG" height="400" alt="SuccessfulDAGRun"/>
+
+After the successful DAG run 1 fact and 6 dimension tables are created in Redshift. Below is view of the Data warehouse
+<img src="img/Redshift_Data_Warehouse.PNG" height="400" alt="RedshiftDataWarehouse"/>
