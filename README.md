@@ -55,7 +55,9 @@ The database is designed following a star-schema principal with 1 fact table and
 
 ### Data pipeline
 This project uses Airflow for orchestration.
-![Alt text](Immigration_ETL_Pipeline/img/etl_graphview.png?raw=true "Title")
+
+<img src="etl_graphview.png" height="400" alt="ETL_GRAPHVIEW"/>
+
 A DummyOperator start_pipeline kick off the pipeline followed by 4 load operations. Those operations load data from GCS bucket to BigQuery tables. The immigration_data is loaded as parquet files while the others are csv formatted. There are operations to check rows after loading to BigQuery.
 
 Next the pipeline loads 3 master data object from the I94 Data dictionary. Then the F_IMMIGRATION_DATA table is created and check to make sure that there is no duplicates. Other dimension tables are also created and the pipelines finishes.
