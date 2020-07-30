@@ -24,7 +24,7 @@ Here are the justifications for the technologies used:
 
 ### ETL Flow
 * Data is copied to s3 buckets.
-* Once the data is moved to S3 bucket, spark job is triggered which reads the data from working zone and apply transformation. Dataset is repartitioned and moved to the Processed Zone.
+* Once the data is moved to S3 bucket, spark job is triggered which reads the data from working zone and apply transformation. Dataset is then to the Processed Zone. Used spark to trim,filter,convert datatypes after loading the data from files into the dataframes. File type includes parquet and csv files. 
 * Airflow ETL job picks up data from processed zone and stages it into the Redshift staging tables.
 * Using the Redshift staging tables and INSERT operation is performed on the Data Warehouse tables to update the dataset.
 * ETL job execution is completed once the Data Warehouse is updated.
@@ -58,7 +58,7 @@ This project uses Airflow for orchestration.
 
 <img src="img/etl_graphview.PNG" height="400" alt="ETL_GRAPHVIEW"/>
 
-A DummyOperator start_pipeline kick off the pipeline followed by 4 load operations. Those operations load data from S3 bucket to Redshift tables. The immigration_data is loaded as parquet files while the others are csv formatted. There are operations to check rows after loading to BigQuery.
+A DummyOperator start_pipeline kick off the pipeline followed by 3 load operations. Those operations load data from S3 bucket to Redshift tables. The immigration_data is loaded as parquet files while the others are csv formatted. There are operations to check rows after loading to Redshift.
 
 Next the pipeline loads 3 master data object from the I94 Data dictionary. Then the final_immigration table is created and check to make sure that there is no duplicates. Other dimension tables are also created and the pipelines finishes.
 
