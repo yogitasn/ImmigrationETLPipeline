@@ -29,16 +29,16 @@ Here are the justifications for the technologies used:
 * Using the Redshift staging tables and INSERT operation is performed on the Data Warehouse tables to update the dataset.
 * ETL job execution is completed once the Data Warehouse is updated.
 * Airflow DAG runs the data quality check on all Warehouse tables once the ETL job execution is completed.
-* Airflow DAG has Analytics queries configured in a Custom Designed Operator. These queries are run and again a Data Quality Check is done on some selected Analytics Table.
 * Dag execution completes after these Data Quality check.
 * In the final Redshift tables queries can be executed to answer following questions
    1. Most tourists are from which country
-   2.  Most visited state in US
-   3.  How long do they stay in US
-   4.  Travellers avg age graph
+   2. Most visited state in US
+   3. How long do they stay in US
+   4. Travellers average age graph
    5. Tourism by months
-   6. States and their average temperature
-   7.  Less diversed states
+   6. Less diversed states
+   7. Demographics of the cities people moving to
+   
 
 ### Environment Setup
 Hardware Used
